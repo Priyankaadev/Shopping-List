@@ -23,7 +23,7 @@
     color: white;
     border-radius: 10px;
     border: none;
-    box-shadow:1.5px 2px lightsalmon;
+    box-shadow:1.5px 2px rgb(252, 116, 66);
 }
 
 .additem-button:hover{

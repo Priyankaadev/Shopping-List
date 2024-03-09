@@ -2,3 +2,27 @@
     min-width: 100%;
     max-width: 500px;
 }
+
+.items-list{
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.change-quantity{
+padding: 1rem;
+border-radius: 100%;
+font-size: small;
+}
+
+.add-item{
+    background-color: rgb(252, 116, 66);
+    color: white;
+}
+.remove-item{
+    background-color: rgb(198, 196, 196);
+    color: white;
+}
+
+.change-quantity:hover{
+    color: black;
+}
