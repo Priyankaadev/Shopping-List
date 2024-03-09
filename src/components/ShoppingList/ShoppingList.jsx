@@ -6,21 +6,48 @@ import { ToastContainer} from 'react-toastify';
 
 //css imports
 import "./ShoppingList.css"
+import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
-const shoppingItems = [
-    {id: 1, name: 'Apples' , quantity: 2},
-    {id: 2, name: 'Rice' , quantity: 1}
-]
 
 function ShoppingList(){
+
+    const [shoppingItems, setShoppingItems] = useState([])
+
+    function handleAddItem(itemName){
+        setShoppingItems([...shoppingItems,{id:uuidv4(), name: itemName, quantity: 1}])
+    }
+
+    function handleAddQuantity(itemId){
+        let newShoppingItems = shoppingItems.map(item =>{
+            if(item.id == itemId) item.quantity++;
+            return item
+        });
+        setShoppingItems(newShoppingItems)
+    }
+
+    function handleDecQuantity(itemId){
+        let newShoppingItems = shoppingItems.map(item =>{
+            if(item.id == itemId) item.quantity--;
+            return item;
+        });
+        newShoppingItems = newShoppingItems.filter(item => item.quantity >0)
+
+        setShoppingItems(newShoppingItems)
+    }
+
     return (
         <>
         <Header />
         <ToastContainer />
         <div className="current-shopping-list">
-            <InputItem/>
+            <InputItem
+                addItem = {handleAddItem}
+            />
             <ItemList
-            shoppingItems={shoppingItems}
+                 shoppingItems={shoppingItems}
+                 addQuantity = {handleAddQuantity}
+                 decQuantity = {handleDecQuantity}
             />
         </div>
         </>
